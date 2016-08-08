@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>浏览器后退刷新</title>
+		<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+	 
+	</head>
+	<body>
+		
+		span原始的值：<span id="_txt">joyme</span>
+		<br/>
+		<br/>
+		<hr/>
+		<input type="text" id="user_text" placeholder="这里填写用户修改后的值"/>
+		<input type="button" id="user_btn" value="修改span的值"/>
+		
+		<br/>
+		<br/>
+		<br/>
+		<hr/>
+		<a href="http://www.baidu.com">打开新页面,然后浏览器后退查看span的值</a>
+	</body>
+	<script>
+	 	
+        
+		$(document).ready(function() {
+			var _mykey ="_local_key_"; 
+	 		var _mykeyVal = window.localStorage.getItem(_mykey); 	
+	 		if(_mykeyVal!=""){
+	 			$("#_txt").html(_mykeyVal);
+	 		}
+			
+			$("#user_btn").bind('click',function(){
+		
+				var user_text = $("#user_text").val();
+				if($.trim(user_text)==""){
+					alert("请填写用户修改值");
+					return false;
+				}
+				$("#_txt").html(user_text);
+				window.localStorage.setItem(_mykey, user_text);
+			});
+		});
+			
+	 	
+	 </script>
+</html>
